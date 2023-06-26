@@ -32,7 +32,16 @@ class Student:
         res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.get_average_rate_hw()}\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}'
         return res
         
+    def __lt__(self, other):
+        return self.get_average_rate_hw() < other.get_average_rate_hw()
 
+
+    def __gt__(self, other):
+        return self.get_average_rate_hw() > other.get_average_rate_hw()
+
+
+    def __eq__(self, other):
+        return self.get_average_rate_hw() == other.get_average_rate_hw()
 
 
 class Mentor:
@@ -80,6 +89,16 @@ class Lecturer(Mentor):
         return average_grade
 
 
+    def __lt__(self, other):
+        return self.get_average_grade() < other.get_average_grade()
+
+
+    def __gt__(self, other):
+        return self.get_average_grade() > other.get_average_grade()
+
+
+    def __eq__(self, other):
+        return self.get_average_grade() == other.get_average_grade()
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -105,21 +124,39 @@ class Reviewer(Mentor):
         
         
 
-best_student = Student('Kos', 'Barbos', '23')
-best_student.courses_in_progress += ['Python']
-
-cool_reviewer = Reviewer('Some', 'Bady')
-cool_reviewer.courses_attached += ['Python']
-
-my_lector = Lecturer('Another', 'One')
-my_lector.courses_attached += ['Python']
-best_student.rate_for_l(my_lector, 'Python', 10)
-
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+student1 = Student('Kos', 'Barbos', 'male')
+student2 = Student('Oleg', 'Kargo', 'male')
+student1.courses_in_progress += ['Python']
+student1.courses_in_progress += ['C++']
+student2.courses_in_progress += ['Python']
 
 
-print(best_student)
-# print(best_student.grades)
-# print(cool_reviewer)
-# print(my_lector.rate_fr_st)
-# print(my_lector)
+reviewer1 = Reviewer('Some', 'Bady')
+reviewer2 = Reviewer('Other', 'One')
+
+reviewer1.courses_attached += ['Python']
+reviewer1.courses_attached += ['C++']
+reviewer2.courses_attached += ['C++']
+
+lecturer1 = Lecturer('Steve', 'Jobs')
+lecturer2 = Lecturer('Bill', 'Geyts')
+lecturer1.courses_attached += ['Python']
+student1.rate_for_l(lecturer2, 'Python', 10)
+
+reviewer1.rate_hw(student1, 'Python', 10)
+reviewer1.rate_hw(student2, 'Python', 5)
+
+
+print(student1)
+
+print(lecturer1 > lecturer2) 
+print(lecturer1 == lecturer2) 
+
+print(student1 > student2)
+print(student1 == student2)
+
+
+# print(student1.grades)
+# print(reviewer1)
+# print(lecturer1.rate_fr_st)
+# print(lecturer1)
