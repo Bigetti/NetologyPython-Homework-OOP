@@ -122,7 +122,15 @@ class Reviewer(Mentor):
     
    
         
-        
+reviewer1 = Reviewer('Some', 'Bady')
+reviewer2 = Reviewer('Other', 'One')
+reviewer1.courses_attached += ['Python']
+reviewer1.courses_attached += ['C++']
+reviewer2.courses_attached += ['C++']
+print(reviewer1)
+print(reviewer2)
+
+
 
 student1 = Student('Kos', 'Barbos', 'male')
 student2 = Student('Oleg', 'Kargo', 'male')
@@ -131,32 +139,44 @@ student1.courses_in_progress += ['C++']
 student2.courses_in_progress += ['Python']
 
 
-reviewer1 = Reviewer('Some', 'Bady')
-reviewer2 = Reviewer('Other', 'One')
-
-reviewer1.courses_attached += ['Python']
-reviewer1.courses_attached += ['C++']
-reviewer2.courses_attached += ['C++']
-
-lecturer1 = Lecturer('Steve', 'Jobs')
-lecturer2 = Lecturer('Bill', 'Geyts')
-lecturer1.courses_attached += ['Python']
-student1.rate_for_l(lecturer2, 'Python', 10)
-
 reviewer1.rate_hw(student1, 'Python', 10)
 reviewer1.rate_hw(student2, 'Python', 5)
 
+print()
 
 print(student1)
-
-print(lecturer1 > lecturer2) 
-print(lecturer1 == lecturer2) 
-
+print(student2)
+print(student1 < student2)
 print(student1 > student2)
 print(student1 == student2)
 
 
-# print(student1.grades)
-# print(reviewer1)
-# print(lecturer1.rate_fr_st)
-# print(lecturer1)
+print()
+
+lecturer1 = Lecturer('Steve', 'Jobs')
+lecturer2 = Lecturer('Bill', 'Geyts')
+lecturer1.courses_attached += ['Python']
+lecturer2.courses_attached += ['Python']
+student1.rate_for_l(lecturer1, 'Python', 10)
+student2.rate_for_l(lecturer1, 'Python', 3)
+student1.rate_for_l(lecturer2, 'Python', 8)
+student2.rate_for_l(lecturer2, 'Python', 8)
+
+print(lecturer1 < lecturer2) 
+print(lecturer1 > lecturer2) 
+print(lecturer1 == lecturer2) 
+
+print(lecturer1.rate_fr_st)
+print(lecturer2.rate_fr_st)
+
+
+
+
+
+ 
+
+
+# # print(student1.grades)
+# # print(reviewer1)
+# # print(lecturer1.rate_fr_st)
+# # print(lecturer1)
