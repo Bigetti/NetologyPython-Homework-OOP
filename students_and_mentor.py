@@ -68,6 +68,9 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         # self.courses_attached = []
         self.rate_fr_st = {}
+
+    def add_course(self, course):
+        self.rate_fr_st[course] = []
        
 
     def __str__(self):
@@ -84,7 +87,7 @@ class Lecturer(Mentor):
             total_grades += sum(grades_list)  # Добавляем сумму оценок в общую сумму
             total_count += len(grades_list)  # Увеличиваем общее количество оценок
         if total_count == 0:
-            return 0  # Возвращаем 0, если нет оценок
+            return 'Оценок по этому курсу еще не выставляли'  # Возвращаем 0, если нет оценок
         average_grade = total_grades / total_count  # Вычисляем среднюю оценку
         return average_grade
 
@@ -145,7 +148,9 @@ reviewer1.rate_hw(student2, 'Python', 5)
 print()
 
 print(student1)
+print()
 print(student2)
+print()
 print(student1 < student2)
 print(student1 > student2)
 print(student1 == student2)
@@ -161,11 +166,11 @@ student1.rate_for_l(lecturer1, 'Python', 10)
 student2.rate_for_l(lecturer1, 'Python', 3)
 student1.rate_for_l(lecturer2, 'Python', 8)
 student2.rate_for_l(lecturer2, 'Python', 8)
-
+print()
 print(lecturer1 < lecturer2) 
 print(lecturer1 > lecturer2) 
 print(lecturer1 == lecturer2) 
-
+print()
 print(lecturer1.rate_fr_st)
 print(lecturer2.rate_fr_st)
 
